@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Event Portal - Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { max-width: 800px; margin: 20px auto; padding: 20px; }
+    .event-item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+    button { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Student Dashboard</h2>
+  <h3>Available Events</h3>
+  <div id="events"></div>
+
+  <script src="firebase.js"></script>
+  <script>
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        location.href = "login.html";
+        return;
+      }
+      
+      const eventsContainer = document.getElementById('events');
+      db.collection("events").onSnapshot(snap => {
+        eventsContainer.innerHTML = "";
+        snap.forEach(doc => {
+          eventsContainer.innerHTML += `
+            <div class="event-item">
+              <p><strong>${doc.data().title}</strong></p>
+              <p>Date: ${doc.data().date}</p>
+              <p>Venue: ${doc.data().venue}</p>
+              <button onclick="registerEvent('${doc.id}')">Register</button>
+            </div>`;
+        });
+      }, error => {
+        console.error('Error loading events:', error);
+        eventsContainer.innerHTML = '<p>Error loading events</p>';
+      });
+
+      window.registerEvent = (eventId) => {
+        try {
+          db.collection("registrations").add({
+            uid: user.uid,
+            eventId: eventId,
+            attended: false,
+            registeredAt: new Date()
+          }).then(() => {
+            alert("Registered successfully!");
+          }).catch(error => {
+            console.error('Error registering:', error);
+            alert("Error: " + error.message);
+          });
+        } catch (error) {
+          console.error('Register event function error:', error);
+        }
+      };
+    });
+  </script>
+</body>
+</html>

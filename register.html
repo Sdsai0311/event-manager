@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Event Portal - Register</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { max-width: 500px; margin: 50px auto; padding: 20px; }
+    input, select { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+    button { padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Register</h2>
+  <input id="name" placeholder="Full Name" type="text">
+  <input id="email" placeholder="Email" type="email">
+  <input id="password" type="password" placeholder="Password">
+  <select id="role">
+    <option value="">Select Role</option>
+    <option value="student">Student</option>
+    <option value="admin">Admin</option>
+  </select>
+  <button onclick="register()">Register</button>
+  <p><a href="login.html">Already have an account? Login here</a></p>
+
+  <script src="firebase.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

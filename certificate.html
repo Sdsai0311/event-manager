@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Event Portal - Certificate</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { max-width: 800px; margin: 50px auto; padding: 20px; text-align: center; }
+    button { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>Download Certificate</h2>
+  <p>Click the button below to download your event certificate.</p>
+  <button onclick="generateCertificate()">Download Certificate</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="firebase.js"></script>
+  <script src="certificate.js"></script>
+</body>
+</html>
