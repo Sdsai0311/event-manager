@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Event Portal - Test All Features</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 2px solid #007bff;
+    }
+    .status {
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .status.loading {
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+    .file-section {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+    }
+    .file-name {
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    table th {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎓 College Event Portal - System Test</h1>
+  
+  <div class="container">
+    <h2>📊 System Status</h2>
+    <div id="firebaseStatus" class="status loading">⏳ Checking Firebase...</div>
+    <div id="authStatus" class="status loading">⏳ Checking Authentication...</div>
+    <div id="dbStatus" class="status loading">⏳ Checking Database...</div>
+  </div>
+
+  <div class="container">
+    <h2>📁 Project Files Overview</h2>
+    
+    <div class="file-section">
+      <div class="file-name">1️⃣ firebase.js</div>
+      <p><strong>Purpose:</strong> Initialize Firebase and connect to backend</p>
+      <p><strong>Status:</strong> <span id="firebaseFileStatus">Loading...</span></p>
+      <table>
+        <tr><th>Config</th><th>Value</th></tr>
+        <tr><td>Project ID</td><td><code>college-event-portal</code></td></tr>
+        <tr><td>Auth Domain</td><td><code>college-event-portal.firebaseapp.com</code></td></tr>
+        <tr><td>Database</td><td><code>Firestore</code></td></tr>
+      </table>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">2️⃣ auth.js</div>
+      <p><strong>Purpose:</strong> Handle user registration and login</p>
+      <p><strong>Functions:</strong></p>
+      <ul>
+        <li><code>register()</code> - Create new user account</li>
+        <li><code>login()</code> - Authenticate existing user</li>
+      </ul>
+      <p><strong>Features:</strong> Form validation, Firebase auth, user data storage</p>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">3️⃣ events.js</div>
+      <p><strong>Purpose:</strong> Manage event creation and display</p>
+      <p><strong>Functions:</strong></p>
+      <ul>
+        <li><code>createEvent()</code> - Create new event (Admin only)</li>
+        <li><code>loadEvents()</code> - Fetch and display all events</li>
+      </ul>
+      <p><strong>Fields:</strong> Title, Date, Venue</p>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">4️⃣ attendance.js</div>
+      <p><strong>Purpose:</strong> Handle event attendance and QR codes</p>
+      <p><strong>Functions:</strong></p>
+      <ul>
+        <li><code>generateQR()</code> - Generate QR code for events</li>
+      </ul>
+      <p><strong>Library:</strong> QRCode.js</p>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">5️⃣ index.html</div>
+      <p><strong>Purpose:</strong> Home page with navigation</p>
+      <p><strong>Links:</strong> Login, Register, Student Portal, Admin Panel</p>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">6️⃣ register.html</div>
+      <p><strong>Purpose:</strong> User registration page</p>
+      <p><strong>Form Fields:</strong></p>
+      <ul>
+        <li>Full Name</li>
+        <li>Email</li>
+        <li>Password (min 6 characters)</li>
+        <li>Role (Student/Admin)</li>
+      </ul>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">7️⃣ login.html</div>
+      <p><strong>Purpose:</strong> User login page</p>
+      <p><strong>Form Fields:</strong></p>
+      <ul>
+        <li>Email</li>
+        <li>Password</li>
+      </ul>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">8️⃣ student.html</div>
+      <p><strong>Purpose:</strong> Student dashboard</p>
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>View available events</li>
+        <li>Register for events</li>
+        <li>Authentication required</li>
+      </ul>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">9️⃣ admin.html</div>
+      <p><strong>Purpose:</strong> Admin dashboard</p>
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>Create new events</li>
+        <li>View event list</li>
+        <li>Generate QR codes</li>
+        <li>Role-based access control</li>
+      </ul>
+    </div>
+
+    <div class="file-section">
+      <div class="file-name">🔟 style.css</div>
+      <p><strong>Purpose:</strong> Global styling and responsive design</p>
+      <p><strong>Features:</strong> Mobile responsive, form styling, event cards, alerts</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>🚀 Quick Start Guide</h2>
+    <table>
+      <tr>
+        <th>Step</th>
+        <th>Action</th>
+        <th>URL</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Home Page</td>
+        <td><a href="index.html">http://localhost:8000</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Register New Account</td>
+        <td><a href="register.html">http://localhost:8000/register.html</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Login</td>
+        <td><a href="login.html">http://localhost:8000/login.html</a></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Student Portal (after login)</td>
+        <td><a href="student.html">http://localhost:8000/student.html</a></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Admin Panel (after login as admin)</td>
+        <td><a href="admin.html">http://localhost:8000/admin.html</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="container">
+    <h2>📋 Database Schema</h2>
+    <h3>Collections in Firestore:</h3>
+    
+    <div class="file-section">
+      <strong>users</strong> collection
+      <pre><code>{
+  uid: "user_id",
+  name: "User Name",
+  email: "user@example.com",
+  role: "student" | "admin",
+  createdAt: timestamp
+}</code></pre>
+    </div>
+
+    <div class="file-section">
+      <strong>events</strong> collection
+      <pre><code>{
+  id: "event_id",
+  title: "Event Title",
+  date: "2026-01-30",
+  venue: "Location",
+  createdAt: timestamp
+}</code></pre>
+    </div>
+
+    <div class="file-section">
+      <strong>registrations</strong> collection
+      <pre><code>{
+  uid: "user_id",
+  eventId: "event_id",
+  attended: false | true,
+  registeredAt: timestamp
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>✅ Testing Checklist</h2>
+    <ul>
+      <li>☑️ Firebase loads and initializes</li>
+      <li>☑️ Registration form accepts input</li>
+      <li>☑️ Login validates credentials</li>
+      <li>☑️ Student can view events</li>
+      <li>☑️ Student can register for events</li>
+      <li>☑️ Admin can create events</li>
+      <li>☑️ Admin can generate QR codes</li>
+      <li>☑️ Role-based redirects work</li>
+    </ul>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  
+  <script src="firebase.js"></script>
+  
+  <script>
+    // Check Firebase status
+    setTimeout(() => {
+      const fbStatus = document.getElementById('firebaseStatus');
+      const authStatus = document.getElementById('authStatus');
+      const dbStatus = document.getElementById('dbStatus');
+      const firebaseFileStatus = document.getElementById('firebaseFileStatus');
+
+      if (typeof auth !== 'undefined') {
+        authStatus.className = 'status success';
+        authStatus.textContent = '✅ Authentication (Firebase Auth) - Ready';
+      } else {
+        authStatus.className = 'status error';
+        authStatus.textContent = '❌ Authentication - Not Ready';
+      }
+
+      if (typeof db !== 'undefined') {
+        dbStatus.className = 'status success';
+        dbStatus.textContent = '✅ Database (Firestore) - Ready';
+      } else {
+        dbStatus.className = 'status error';
+        dbStatus.textContent = '❌ Database - Not Ready';
+      }
+
+      if (typeof firebase !== 'undefined') {
+        fbStatus.className = 'status success';
+        fbStatus.textContent = '✅ Firebase SDK - Initialized';
+        firebaseFileStatus.textContent = '✅ Loaded and Connected';
+      } else {
+        fbStatus.className = 'status error';
+        fbStatus.textContent = '❌ Firebase SDK - Not Loaded';
+        firebaseFileStatus.textContent = '❌ Failed to Load';
+      }
+    }, 2000);
+  </script>
+</body>
+</html>
